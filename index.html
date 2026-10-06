@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Something Special ✨</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #050510;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+    width: 100%;
+    max-width: 500px;
+    min-height: 100vh;
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.content {
+    width: 100%;
+    z-index: 5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.fade {
+    animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.small {
+    color: #aaa;
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 38px;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.gradient {
+    background: linear-gradient(90deg, #ff6ec7, #a78bfa, #67e8f9);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+button {
+    border: none;
+    padding: 15px 32px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ff4da6, #7c3aed);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 10px 35px rgba(236,72,153,.3);
+    transition: .3s;
+}
+
+button:active {
+    transform: scale(.94);
+}
+
+.gift {
+    font-size: 90px;
+    animation: floating 2s infinite ease-in-out;
+    margin-bottom: 25px;
+}
+
+@keyframes floating {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.name {
+    font-size: 43px;
+    font-weight: 800;
+    margin: 15px 0;
+    background: linear-gradient(90deg,#f9a8d4,#c4b5fd,#67e8f9);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.message {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #ddd;
+    margin: 25px 5px;
+}
+
+.cake {
+    font-size: 75px;
+    margin-bottom: 15px;
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    color: white;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: .2; transform: scale(.7); }
+    to { opacity: 1; transform: scale(1.2); }
+}
+
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 14px;
+    top: -20px;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+
+.final {
+    font-size: 14px;
+    color: #888;
+    margin-top: 25px;
+    letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="screen">
+
+    <!-- FIRST SCREEN -->
+    <div class="content fade" id="screen1">
+        <div class="small">HEY... WAIT 👀</div>
+
+        <h1>
+            I have<br>
+            <span class="gradient">something special</span><br>
+            for you.
+        </h1>
+
+        <button onclick="nextScreen()">
+            Open It ✨
+        </button>
+    </div>
+
+
+    <!-- GIFT SCREEN -->
+    <div class="content hidden" id="screen2">
+
+        <div class="gift">🎁</div>
+
+        <h1>
+            One little surprise<br>
+            is waiting for you...
+        </h1>
+
+        <button onclick="reveal()">
+            Open the Gift 🎀
+        </button>
+
+    </div>
+
+
+    <!-- BIRTHDAY SCREEN -->
+    <div class="content hidden" id="screen3">
+
+        <div class="cake">🎂</div>
+
+        <div class="small">TODAY IS YOUR DAY</div>
+
+        <h1>
+            Happy Birthday
+        </h1>
+
+        <div class="name">
+            GALIB SAHARIER
+        </div>
+
+        <div class="message">
+            May your life always be filled with
+            happiness, success, beautiful moments
+            and countless reasons to smile. ✨
+            <br><br>
+            Keep dreaming, keep growing,
+            and never stop being the amazing person
+            you are.
+        </div>
+
+        <div style="font-size:35px;">
+            🎈 ✨ 🎉 ✨ 🎈
+        </div>
+
+        <div class="final">
+            Made with a little bit of code & a lot of good wishes ❤️
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const stars = document.getElementById("stars");
+
+// Create stars
+for(let i = 0; i < 45; i++){
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+    star.innerHTML = "✦";
+
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.fontSize = (Math.random() * 10 + 5) + "px";
+    star.style.animationDelay = Math.random() * 2 + "s";
+
+    stars.appendChild(star);
+}
+
+
+// First button
+function nextScreen(){
+
+    document.getElementById("screen1")
+        .classList.add("hidden");
+
+    document.getElementById("screen2")
+        .classList.remove("hidden");
+
+    document.getElementById("screen2")
+        .classList.add("fade");
+}
+
+
+// Birthday reveal
+function reveal(){
+
+    document.getElementById("screen2")
+        .classList.add("hidden");
+
+    document.getElementById("screen3")
+        .classList.remove("hidden");
+
+    document.getElementById("screen3")
+        .classList.add("fade");
+
+    createConfetti();
+}
+
+
+// Confetti
+function createConfetti(){
+
+    const symbols = ["🎉","✨","🎈","💖","⭐"];
+
+    for(let i = 0; i < 60; i++){
+
+        const confetti = document.createElement("div");
+
+        confetti.className = "confetti";
+
+        confetti.innerHTML =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        confetti.style.left =
+            Math.random() * 100 + "vw";
+
+        confetti.style.animationDuration =
+            (Math.random() * 2 + 2) + "s";
+
+        confetti.style.fontSize =
+            (Math.random() * 12 + 10) + "px";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 4000);
+    }
+}
+
+</script>
+
+</body>
+  </html>
